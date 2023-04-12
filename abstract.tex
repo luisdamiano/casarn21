@@ -1,0 +1,217 @@
+% Guidelines ---------------------------------------------------------
+%
+% * Due Friday, January 29, 2021
+%
+% * We emphasize the application of statistics in solving real-life
+% problems
+% 
+% * data sets and analyses which motivated the work shares equal
+% importance with development of the statistical theory.
+% 
+% * new or innovative applications of existing statistical %
+% methodologies are appropriate
+% 
+% * modern experimental design and statistical issues in QTL mapping
+% and epigenomics
+% 
+% * Student competition
+% 
+% * title length up to 130 chars with spaces.
+% 
+% * abstract length up to 1220 chars with spaces.
+%
+% Initial abstract outline -------------------------------------------
+% 
+% * Methodology
+%
+%   * What makes functional input unique?
+%
+%   * Description of our methodology
+%   
+%   * What makes our approach better?
+%
+%     * More constructive empowering the scientist to inject plant
+%     knowledge, improving over "data driven" / "model agnostic" purely
+%     statistical approaches for dimensionality reduction.
+%
+% * Application
+%
+%   * Mention Foresite
+% 
+%   * Mention APSIM
+%
+%   * Mention two or three most important functional inputs
+%
+%   * Why is the emulator important? what does it bring to the table?
+%
+% * Results & implications
+%
+%   * findings, results, or arguments
+%
+%   * significance or implications of your findings or arguments
+
+Title: Automatic Dynamic Relevance Determination of soil properties
+over different soil layers for yield prediction using APSIM
+
+Authors: Luis Damiano, Jarad Niemi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Trimmed version 
+% ~ 1220 chars
+
+APSIM is a computer model that simulates crop growth via the
+mathematical modeling of physical mechanisms. We study how the
+relevance of soil properties on plant growth behaves dynamically at
+different depths with a Gaussian process (GP) emulator. The GP
+literature emphasizes scalar or vector inputs, which have less
+potential to fully exploit the functional structure and model its
+relevance; in fact, prediction and calibration would still require
+soil samples for each soil layer.
+
+We present an Automatic Dynamic Relevance Determination (ADRD) via a
+parametric length-scale function of depth to capture how fast
+relevance transitions over depth from a neutral state.  Prediction
+can more easily adapt to natural factor variability like plant root
+length. The approach naturally incorporates prior knowledge, if any,
+as the transition shape and characteristics can be tuned based on
+theoretical or empirical grounds. In an application, we estimate the
+ADRD parameters of key soil properties in different scenarios and
+explore the shape, direction, and rate of change of the input
+relevance over soil layers. Inference helps to better understand the
+complex biological process and inform future field data collection and
+APSIM calibration efforts.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Extended version 
+% ~ 2800 chars
+
+We study how the relevance of soil properties on plant biomass growth
+behaves dynamically across a range of soil layers at different depths.
+
+The Agricultural Production Systems sIMulator (APSIM) is numerical
+computer model that simulates crop growth via mathematical dynamic
+models capturing the essential plant and soil physical processes
+mechanisms. From exploratory analyses, we identified potentially
+highly relevant biomass growth drivers such as the content of water
+retained after gravitational flow, the fractional amount of water
+above retention that can drain under gravity per day, and soil organic
+carbon. These inputs, which are modeled over a continuous index, are
+observed in field data and calibrated in the model and as a finite
+collection of soil depths (arbitrary soil layer discretization).
+
+We set up a Gaussian process (GP) emulator (AKA surrogate or
+metamodel) to gain insight on how crop growth responds to the inputs
+of interest. The GP literature emphasizes the modeling of collections
+of scalar inputs, vector inputs, scalar-valued summaries of vector
+inputs, and other projections of the inputs treated as a vector
+input. These methodologies do not offer enough insight on the inputs
+relevance; in fact, prediction and calibration would still require
+soils to be sampled or interpolated at every soil layer no matter how
+relevant it is to determine the output. Morris (2012) suggests that
+the principal component representation of indexed inputs has less
+potential to identify the underlying functional structure.
+
+In a GP, the correlation between output pair is a function of the
+similitude between their corresponding inputs. Extending Morris
+(2012), we use a parametric length-scale function of the input index
+with unknown parameter values to implement an Automatic Dynamic
+Relevance Determination (ADRD). Learning the parameter values from
+APSIM simulations captures how slowly or fast soil layer relevance
+transitions from or towards a neutral state. Prediction can now adapt
+to different input relevance over soil depth and better account for
+variability from, say, a variety of plant root length. This is Indexes
+at which the functional length-scale takes larger values become
+irrelevant, effectively guiding future data collection and model
+calibration. Additionally, our approach enables the incorporation of
+prior knowledge about the underlying process as the data analyst can
+its the shape and characteristic to accommodate for both previous
+empirical findings or theoretical grounds.
+
+In an application, we estimate key soil properties ADRD parameters. We
+explore the shape, the direction, and rate of changes of the input
+relevance to predict crop yield across soil layers. This findigs
+enable a better understanding of the underlying growth process and can
+be used to inform future field data collection and APSIM calibration.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pointers and mumbling
+
+Development of an appropriate approximating relationship between
+process variables and the process response, and optimization in search
+of process variable levels to produce a desirable response (eg
+maximize yield).
+
+We propose (uhm?) a functional length-scale
+
+A surrogate for a mechanistic model.
+
+Gathering data is expensive.
+
+Cheaper way to explore relationships.
+
+Complex models require more resources to calibrate and simulate.
+
+Understanding sensitivity to inputs.
+
+Automatic optimization.
+
+Development of an appropriate approximating relationship between
+process variables and the process response, and optimization in search
+of process variable levels to produce a desirable response (eg
+maximize yield).
+
+Natural variables (expressed in their natural units of measurements)
+vs. coded variables (dimensionless input transformations such as unit
+cube, or zero mean variance 1).
+
+Avoid expernsive field data collection.
+
+* Preliminary model analyses suggest that [functional inputs 1, 2, 3]
+are among the soil properties to predict yield. Their relationship
+with yield is highly non-linear. These inputs are indexed by depth.
+
+These inputs have a natural structure well studied in agronomy.
+
+Typically, multivariate inputs are processed with a dimensionality
+reduction technique such as PCA.
+
+Considering it just a multivariate inputs losses the information
+contained in the index structure.
+
+Dimensionality reduction techniques,
+even those designed for functionals like FPCA, fall short in that new
+field measurements would require measuring the input variable across
+all depths.
+
+A Gaussian process regression, also known as Kriging, 
+
+The correlation between inputs and outputs are typically captured by
+the length-scale parameter (one per input variable). To account for
+the inherent input structure, we replace a finite collection of
+independent length-scale with a positive-valued length-scale
+functional that drives the correlation between yield and the inputs
+along the depth axis.
+
+Length-scale
+
+To better understand the relationship between inputs and outputs in a
+complex model.
+
+Benefits:
+
+* To add agronomical prior knowledge about the underlaying process,
+instead of fully data driven techniques.
+
+* Identify depth levels that are more relevant (higher weight) to
+focus future calibration and field experiments and guide future data
+collection.
+
+* More constructive approach vs.
+
+* Better understanding of the underlying model relationship -- at
+which depth are variables more impactful?
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
